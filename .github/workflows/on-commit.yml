@@ -37,7 +37,7 @@ jobs:
         run: flutter test
 
       - name: Run Android unit tests with gradle
-        run: (cd flutter-emarsys-sdk/example/android && ./gradlew clean build test)
+        run: (cd example/android && ./gradlew clean build test)
 
       - name: Run integration tests on Android
         run: pwd
@@ -69,7 +69,7 @@ jobs:
         shell: bash
 
       - name: Install Dependencies
-        run: (cd flutter-emarsys-sdk/example/ios && pod install --no-repo-update --verbose)
+        run: (cd example/ios && pod install --no-repo-update --verbose)
         shell: bash
 
       - name: Run Flutter Tests
@@ -80,39 +80,3 @@ jobs:
 
 #      - name: Run integration tests on iOS
 #        run: echo todo
-
-  slack:
-    needs: [android, ios]
-    if: always()
-    runs-on: ubuntu-latest
-    steps:
-      - name: Download file 'FAILURE.TXT' from artifact
-        uses: actions/download-artifact@v1
-        with:
-          name: failure_file
-
-      - name: Read file 'FAILURE.TXT' and set output parameter
-        id: set_output
-        run: echo "::set-output name=FAILURE::$(<failure_file/FAILURE.TXT)"
-
-      - name: Slack Success
-        if: steps.set_output.outputs.FAILURE == 'false'
-        uses: megamegax/slack_action@0.2.3
-        with:
-          channel: "${{env.SLACK_CHANNEL}}"
-          message: "Last push build successful! :man-gesturing-ok: :bananadance:"
-          user_name: "${{env.SLACK_USERNAME}}"
-          job_status: "success"
-          user_icon: "${{env.SLACK_ICON}}"
-          actions: '[{ "type": "button", "text": "View actions", "url": "https://github.com/emartech/flutter-emarsys-sdk/actions" },{ "type": "button", "text": "View Firebase", "url": "https://console.firebase.google.com/project/ems-mobile-sdk/testlab/histories/" },{ "type": "button", "text": "Install page", "url": "http://ems-mobileteam-artifacts.s3-website-eu-west-1.amazonaws.com/index-ems.html" }]'
-
-      - name: Slack Notification
-        if: steps.set_output.outputs.FAILURE == 'true'
-        uses: megamegax/slack_action@0.2.3
-        with:
-          channel: "${{env.SLACK_CHANNEL}}"
-          message: "Last push build failed! :man-gesturing-no: :blobcatfearful:"
-          user_name: "${{env.SLACK_USERNAME}}"
-          job_status: "failure"
-          user_icon: "${{env.SLACK_ICON}}"
-          actions: '[{ "type": "button", "text": "View actions", "url": "https://github.com/emartech/flutter-emarsys-sdk/actions" },{ "type": "button", "text": "View Firebase", "url": "https://console.firebase.google.com/project/ems-mobile-sdk/testlab/histories/" }]'

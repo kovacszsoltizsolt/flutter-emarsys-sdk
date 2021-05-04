@@ -63,6 +63,9 @@ jobs:
         
       - name: Simulator list
         run: xcrun simctl list
+        
+      - name: ooepqwefrna simulator
+        run: open /Applications/Xcode.app/Contents/Developer/Applications/iOS\ Simulator.app/
           
 
 

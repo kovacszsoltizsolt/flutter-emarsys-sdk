@@ -78,7 +78,11 @@ jobs:
       - name: Run iOS unit tests with gradle
         run: xcodebuild -workspace ~/work/flutter-emarsys-sdk/flutter-emarsys-sdk/example/ios/Runner.xcworkspace -scheme flutter-plugin-ios-tests -configuration Debug -destination 'platform=iOS Simulator,name=iPhone 12 Pro Max' test
 
+      - name: PWRD
+        run: pwd
+          
       - name: Run integration tests on iOS
-        run: flutter drive \
-         --driver=example/test_driver/integration_test.dart \
-         --target=example/integration_test/emarsys_test.dart
+        run: |
+          flutter drive /
+            --driver=example/test_driver/integration_test.dart \
+            --target=example/integration_test/emarsys_test.dart

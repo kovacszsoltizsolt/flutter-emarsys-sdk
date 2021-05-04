@@ -26,12 +26,18 @@ jobs:
           
       - name: Update dependencies
         run: flutter pub get
+        
+      - name: start android emulator
+        run: /Users/runner/Library/Android/sdk/emulator/emulator -list-avds
 
 #       - name: Run Flutter Tests
 #         run: flutter test
 
       - name: Run Android unit tests with gradle
         run: (cd example/android && ./gradlew clean build test -x lint)
+        
+      - name: start android emulator
+        run: /Users/runner/Library/Android/sdk/emulator/emulator -list-avds
 
       - name: doctore
         run: flutter doctor -v

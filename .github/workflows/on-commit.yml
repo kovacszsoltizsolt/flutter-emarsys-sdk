@@ -65,19 +65,7 @@ jobs:
         run: xcrun simctl list
         
       - name: find simulator
-        run: (cd ../../.. && ls -la)
-        
-      - name: find simulator
-        run: (cd ../.. && ls -la)
-        
-      - name: find simulator
-        run: (cd .. && ls -la)
-        
-      - name: find simulator
-        run: (cd ../../../.. && ls -la)
-        
-      - name: find simulator
-        run: (cd ../../../../.. && ls -la)
+        run: (cd /Applications/Xcode.app/Contents/Developer/Applications && find . -print | sed -e 's;[^/]*/;|____;g;s;____|; |;g')
         
       - name: ooepqwefrna simulator
         run: open /Applications/Xcode.app/Contents/Developer/Applications/iOS\ Simulator.app/

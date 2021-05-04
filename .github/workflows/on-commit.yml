@@ -12,35 +12,35 @@ env:
   SLACK_WEBHOOK: ${{ secrets.SLACK_MOBILE_TEAM_CI_CHANNEL_WEBHOOK }}
 
 jobs:
-  android:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout repo
-        uses: actions/checkout@v2
+#   android:
+#     runs-on: ubuntu-latest
+#     steps:
+#       - name: Checkout repo
+#         uses: actions/checkout@v2
 
-      - name: Setup flutter env
-        uses: subosito/flutter-action@v1
-        with:
-          flutter-version: "2.0.5"
-          channel: "stable"
+#       - name: Setup flutter env
+#         uses: subosito/flutter-action@v1
+#         with:
+#           flutter-version: "2.0.5"
+#           channel: "stable"
           
-      - name: PWRD
-        run: pwd
+#       - name: PWRD
+#         run: pwd
           
-      - name: ls
-        run: ls -la
+#       - name: ls
+#         run: ls -la
 
-      - name: Update dependencies
-        run: flutter pub get
+#       - name: Update dependencies
+#         run: flutter pub get
 
-      - name: Run Flutter Tests
-        run: flutter test
+#       - name: Run Flutter Tests
+#         run: flutter test
 
-#       - name: Run Android unit tests with gradle
-#         run: (cd example/android && ./gradlew clean build test -x lint)
+# #       - name: Run Android unit tests with gradle
+# #         run: (cd example/android && ./gradlew clean build test -x lint)
 
-      - name: Run integration tests on Android
-        run: pwd
+#       - name: Run integration tests on Android
+#         run: pwd
 
   ios:
     runs-on: macos-latest
@@ -63,6 +63,9 @@ jobs:
         
       - name: Simulator list
         run: xcrun simctl list
+        
+      - name: find simulator
+        run: sudo find /Applications/ -iname Simulator.app
         
       - name: ooepqwefrna simulator
         run: open /Applications/Xcode.app/Contents/Developer/Applications/iOS\ Simulator.app/

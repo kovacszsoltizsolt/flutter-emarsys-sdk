@@ -27,9 +27,6 @@ jobs:
       - name: PWRD
         run: pwd
           
-      - name: open simulator
-        run: open -a simulator
-          
       - name: ls
         run: ls -la
 
@@ -63,6 +60,9 @@ jobs:
           
       - name: ls
         run: ls -la
+          
+      - name: open simulator
+        run: open -a simulator
 
       - name: Update dependencies
         run: flutter pub get

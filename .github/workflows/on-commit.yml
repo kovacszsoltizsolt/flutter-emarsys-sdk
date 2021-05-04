@@ -12,35 +12,29 @@ env:
   SLACK_WEBHOOK: ${{ secrets.SLACK_MOBILE_TEAM_CI_CHANNEL_WEBHOOK }}
 
 jobs:
-#   android:
-#     runs-on: ubuntu-latest
-#     steps:
-#       - name: Checkout repo
-#         uses: actions/checkout@v2
+  android:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v2
 
-#       - name: Setup flutter env
-#         uses: subosito/flutter-action@v1
-#         with:
-#           flutter-version: "2.0.5"
-#           channel: "stable"
+      - name: Setup flutter env
+        uses: subosito/flutter-action@v1
+        with:
+          flutter-version: "2.0.5"
+          channel: "stable"
           
-#       - name: PWRD
-#         run: pwd
-          
-#       - name: ls
-#         run: ls -la
+      - name: Update dependencies
+        run: flutter pub get
 
-#       - name: Update dependencies
-#         run: flutter pub get
+      - name: Run Flutter Tests
+        run: flutter test
 
-#       - name: Run Flutter Tests
-#         run: flutter test
+      - name: Run Android unit tests with gradle
+        run: (cd example/android && ./gradlew clean build test -x lint)
 
-# #       - name: Run Android unit tests with gradle
-# #         run: (cd example/android && ./gradlew clean build test -x lint)
-
-#       - name: Run integration tests on Android
-#         run: pwd
+      - name: Run integration tests on Android
+        run: pwd
 
   ios:
     runs-on: macos-latest
@@ -51,27 +45,12 @@ jobs:
       - name: Setup flutter env
         uses: subosito/flutter-action@v1
         with:
-          flutter-version: "2.0.0"
+          flutter-version: "2.0.5"
           channel: "stable"
-          
-          
-      - name: PWRD
-        run: pwd
-          
-      - name: ls
-        run: ls -la
-        
-      - name: Simulator list
-        run: xcrun simctl list
-        
-      - name: find simulator
-        run: (cd /Applications/Xcode.app/Contents/Developer/Applications && find . -print | sed -e 's;[^/]*/;|____;g;s;____|; |;g')
         
       - name: ooepqwefrna simulator
         run: open /Applications/Xcode.app/Contents/Developer/Applications/Simulator.app/
           
-
-
       - name: Update dependencies
         run: flutter pub get
 
@@ -88,15 +67,6 @@ jobs:
 
       - name: Run iOS unit tests with gradle
         run: xcodebuild -workspace ~/work/flutter-emarsys-sdk/flutter-emarsys-sdk/example/ios/Runner.xcworkspace -scheme flutter-plugin-ios-tests -configuration Debug -destination 'platform=iOS Simulator,name=iPhone 12 Pro Max' test
-
-      - name: doctore
-        run: flutter doctor -v
-
-      - name: cd
-        run: cd example
-          
-      - name: PWRD
-        run: pwd
         
       - name: Run integration tests on iOS
         if: always()

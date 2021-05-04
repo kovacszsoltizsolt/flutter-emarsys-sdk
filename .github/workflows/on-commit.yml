@@ -80,5 +80,5 @@ jobs:
 
       - name: Run integration tests on iOS
         run: flutter drive \
-         --driver=test_driver/integration_test.dart \
-         --target=integration_test/emarsys_test.dart
+         --driver=example/test_driver/integration_test.dart \
+         --target=example/integration_test/emarsys_test.dart

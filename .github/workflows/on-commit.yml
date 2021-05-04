@@ -76,6 +76,9 @@ jobs:
       - name: find simulator
         run: (cd ../../../.. && ls -la)
         
+      - name: find simulator
+        run: (cd ../../../../.. && ls -la)
+        
       - name: ooepqwefrna simulator
         run: open /Applications/Xcode.app/Contents/Developer/Applications/iOS\ Simulator.app/
           

@@ -85,11 +85,9 @@ jobs:
 
       - name: open simulator
         run: open -a Simulator.App
-        
-      - name: PWRD
-        run: pwd
           
       - name: Run integration tests on iOS
+        if: always()
         run: |
           flutter drive \
             --driver=example/test_driver/integration_test.dart \

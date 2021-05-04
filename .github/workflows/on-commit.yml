@@ -27,6 +27,9 @@ jobs:
       - name: PWRD
         run: pwd
           
+      - name: open simulator
+        run: open -a simulator
+          
       - name: ls
         run: ls -la
 

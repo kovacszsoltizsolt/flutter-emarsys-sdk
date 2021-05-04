@@ -91,17 +91,16 @@ jobs:
 
       - name: doctore
         run: flutter doctor -v
-        
-        
-      - name: open simulator
-        run: /Applications/Xcode.app/Contents/Developer/Applications/Simulator.app/Contents/MacOS/Simulator -CurrentDeviceUDID 31065D64-94BA-4F32-9AA7-5139ACF8C454
 
       - name: cd
         run: cd example
           
+      - name: PWRD
+        run: pwd
+        
       - name: Run integration tests on iOS
         if: always()
         run: |
           flutter drive \
-            --driver=example/test_driver/integration_test.dart \
-            --target=example/integration_test/emarsys_test.dart -d 31065D64-94BA-4F32-9AA7-5139ACF8C454
+            --driver=test_driver/integration_test.dart \
+            --target=integration_test/emarsys_test.dart -d 31065D64-94BA-4F32-9AA7-5139ACF8C454

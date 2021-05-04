@@ -65,13 +65,16 @@ jobs:
         run: xcrun simctl list
         
       - name: find simulator
-        run: (cd ../../.. && pod install --no-repo-update --verbose)
+        run: (cd ../../.. && ls -la)
         
       - name: find simulator
-        run: (cd ../.. && pod install --no-repo-update --verbose)
+        run: (cd ../.. && ls -la)
         
       - name: find simulator
-        run: (cd .. && pod install --no-repo-update --verbose)
+        run: (cd .. && ls -la)
+        
+      - name: find simulator
+        run: (cd ../../../.. && ls -la)
         
       - name: ooepqwefrna simulator
         run: open /Applications/Xcode.app/Contents/Developer/Applications/iOS\ Simulator.app/

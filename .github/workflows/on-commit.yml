@@ -101,6 +101,6 @@ jobs:
       - name: Run integration tests on iOS
         if: always()
         run: |
-          flutter drive \
+          (cd example && flutter drive \
             --driver=test_driver/integration_test.dart \
-            --target=integration_test/emarsys_test.dart -d 31065D64-94BA-4F32-9AA7-5139ACF8C454
+            --target=integration_test/emarsys_test.dart -d 31065D64-94BA-4F32-9AA7-5139ACF8C454)

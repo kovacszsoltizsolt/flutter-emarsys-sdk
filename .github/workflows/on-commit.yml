@@ -33,6 +33,9 @@ jobs:
 #       - name: Run Android unit tests with gradle
 #         run: (cd example/android && ./gradlew clean build test -x lint)
 
+      - name: doctore
+        run: flutter doctor -v
+
       - name: Run integration tests on iOS
         if: always()
         run: |
@@ -40,31 +43,31 @@ jobs:
             --driver=test_driver/integration_test.dart \
             --target=integration_test/emarsys_test.dart)
 
-  ios:
-    runs-on: macos-latest
-    steps:
-      - name: Checkout repo
-        uses: actions/checkout@v2
+#   ios:
+#     runs-on: macos-latest
+#     steps:
+#       - name: Checkout repo
+#         uses: actions/checkout@v2
 
-      - name: Setup flutter env
-        uses: subosito/flutter-action@v1
-        with:
-          flutter-version: "2.0.5"
-          channel: "stable"
+#       - name: Setup flutter env
+#         uses: subosito/flutter-action@v1
+#         with:
+#           flutter-version: "2.0.5"
+#           channel: "stable"
         
-      - name: ooepqwefrna simulator
-        run: open /Applications/Xcode.app/Contents/Developer/Applications/Simulator.app/
+#       - name: ooepqwefrna simulator
+#         run: open /Applications/Xcode.app/Contents/Developer/Applications/Simulator.app/
           
-      - name: Update dependencies
-        run: flutter pub get
+#       - name: Update dependencies
+#         run: flutter pub get
 
-      - name: Remove old directories
-        run: rm -rf ~/tmp | rm -rf ~/Library/MobileDevice
-        shell: bash
+#       - name: Remove old directories
+#         run: rm -rf ~/tmp | rm -rf ~/Library/MobileDevice
+#         shell: bash
 
-      - name: Install Dependencies
-        run: (cd example/ios && pod install --no-repo-update --verbose)
-        shell: bash
+#       - name: Install Dependencies
+#         run: (cd example/ios && pod install --no-repo-update --verbose)
+#         shell: bash
 
 #       - name: Run Flutter Tests
 #         run: flutter test
@@ -72,9 +75,9 @@ jobs:
 #       - name: Run iOS unit tests with gradle
 #         run: xcodebuild -workspace ~/work/flutter-emarsys-sdk/flutter-emarsys-sdk/example/ios/Runner.xcworkspace -scheme flutter-plugin-ios-tests -configuration Debug -destination 'platform=iOS Simulator,name=iPhone 12 Pro Max' test
         
-      - name: Run integration tests on iOS
-        if: always()
-        run: |
-          (cd example && flutter drive \
-            --driver=test_driver/integration_test.dart \
-            --target=integration_test/emarsys_test.dart)
+#       - name: Run integration tests on iOS
+#         if: always()
+#         run: |
+#           (cd example && flutter drive \
+#             --driver=test_driver/integration_test.dart \
+#             --target=integration_test/emarsys_test.dart)

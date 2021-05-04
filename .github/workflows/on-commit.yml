@@ -60,11 +60,10 @@ jobs:
           
       - name: ls
         run: ls -la
+        
       - name: Simulator list
         run: xcrun simctl list
           
-      - name: open simulator
-        run: open -a Simulator.App
 
 
       - name: Update dependencies
@@ -84,6 +83,9 @@ jobs:
       - name: Run iOS unit tests with gradle
         run: xcodebuild -workspace ~/work/flutter-emarsys-sdk/flutter-emarsys-sdk/example/ios/Runner.xcworkspace -scheme flutter-plugin-ios-tests -configuration Debug -destination 'platform=iOS Simulator,name=iPhone 12 Pro Max' test
 
+      - name: open simulator
+        run: open -a Simulator.App
+        
       - name: PWRD
         run: pwd
           

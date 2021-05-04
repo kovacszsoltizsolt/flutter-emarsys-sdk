@@ -96,6 +96,8 @@ jobs:
       - name: open simulator
         run: /Applications/Xcode.app/Contents/Developer/Applications/Simulator.app/Contents/MacOS/Simulator -CurrentDeviceUDID 31065D64-94BA-4F32-9AA7-5139ACF8C454
 
+      - name: cd
+        run: cd example
           
       - name: Run integration tests on iOS
         if: always()

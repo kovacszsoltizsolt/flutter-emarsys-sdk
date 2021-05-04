@@ -60,9 +60,12 @@ jobs:
           
       - name: ls
         run: ls -la
+      - name: Simulator list
+        run: xcrun simctl list
           
       - name: open simulator
-        run: open -a simulator
+        run: open -a Simulator.App
+
 
       - name: Update dependencies
         run: flutter pub get

@@ -26,25 +26,13 @@ jobs:
           
       - name: Update dependencies
         run: flutter pub get
-        
-#       - name: start android emulator
-#         run: /Users/runner/Library/Android/sdk/emulator/emulator -list-avds
 
-#       - name: Run Flutter Tests
-#         run: flutter test
-
-      - name: Run Android unit tests with gradle
-        run: (cd example/android && ./gradlew clean build test -x lint)
+#       - name: Run Android unit tests with gradle
+#         run: (cd example/android && ./gradlew clean build test -x lint)
         
       - name: Build integrésön tszt
-        run: (cd example && flutter build apk) | (cd example/android && ./gradlew app:assembleAndroidTest) |  (cd example/android && ./gradlew app:assembleDebug -Ptarget=integration_test/emarsys_test.dart)
+        run: (cd example && flutter build apk) | (cd example/android && ls -la) | (cd example/android && ./gradlew app:assembleAndroidTest) |  (cd example/android && ./gradlew app:assembleDebug -Ptarget=integration_test/emarsys_test.dart)
         
-#       - name: start android emulator
-#         run: /Users/runner/Library/Android/sdk/emulator/emulator -list-avds
-
-#       - name: doctore
-#         run: flutter doctor -v
-
       - name: Run integration tests on iOS
         if: always()
         run: |

@@ -31,7 +31,7 @@ jobs:
 #         run: (cd example/android && ./gradlew clean build test -x lint)
         
       - name: Build integrésön tszt
-        run: (cd example && flutter build apk) 
+        run: (cd example && flutter build apk && ls -la && ./gradlew app:assembleAndroidTest) 
 #         | (cd example/android && ls -la) | (cd example/android && ./gradlew app:assembleAndroidTest) |  (cd example/android && ./gradlew app:assembleDebug -Ptarget=integration_test/emarsys_test.dart)
         
       - name: Run integration tests on iOS
